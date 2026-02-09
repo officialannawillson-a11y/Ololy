@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fast Video Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  background:#000;
+  font-family:Arial, sans-serif;
+}
+
+/* VIDEO SCREEN */
+#videoPage{
+  position:fixed;
+  inset:0;
+  cursor:pointer;
+}
+
+#videoPage video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* ADS PAGE */
+#adsPage{
+  display:none;
+}
+
+.ad{
+  height:30vh;
+}
+
+iframe{
+  width:100%;
+  height:100%;
+  border:0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- VIDEO PAGE -->
+<div id="videoPage">
+  <video id="mainVideo" preload="auto" playsinline>
+    <source src="https://your-video-link.com/video.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- ADS PAGE (10 LINKS) -->
+<div id="adsPage">
+  <div class="ad"><iframe src="https://link1.com"></iframe></div>
+  <div class="ad"><iframe src="https://link2.com"></iframe></div>
+  <div class="ad"><iframe src="https://link3.com"></iframe></div>
+  <div class="ad"><iframe src="https://link4.com"></iframe></div>
+  <div class="ad"><iframe src="https://link5.com"></iframe></div>
+  <div class="ad"><iframe src="https://link6.com"></iframe></div>
+  <div class="ad"><iframe src="https://link7.com"></iframe></div>
+  <div class="ad"><iframe src="https://link8.com"></iframe></div>
+  <div class="ad"><iframe src="https://link9.com"></iframe></div>
+  <div class="ad"><iframe src="https://link10.com"></iframe></div>
+</div>
+
+<script>
+const videoPage = document.getElementById("videoPage");
+const adsPage   = document.getElementById("adsPage");
+const video     = document.getElementById("mainVideo");
+
+let clicked = false;
+
+/* FAST LOAD */
+video.load();
+
+/* FIRST CLICK */
+videoPage.addEventListener("click", function(){
+  if(clicked) return;
+  clicked = true;
+
+  /* show ads */
+  videoPage.style.display = "none";
+  adsPage.style.display = "block";
+
+  /* enable sound + controls */
+  video.muted = false;
+  video.controls = true;
+  video.play();
+});
+</script>
+
+</body>
+</html>
